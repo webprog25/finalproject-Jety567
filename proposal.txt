@@ -1,26 +1,31 @@
 Webprog Final Project Proposal
 =============================
-<TODO: Fill in this proposal template and remove the TODOs (including the < >).>
 
-Project Title: <TODO: Come up with a name, or a short description will do>
-Your Name: <TODO>
+Project Title: Shelf Manager for Baby Food
+Your Name: Patrick Weber
 
 Description
 -----------
-<TODO: Tell us about your project idea. What will it do, how will it work. A paragraph or two should do. It may be helpful to include a "feature list" that details what users will be able to do in the app.>
+I want to create a small organizer for managing my baby food shelf. The application will help me keep track of which baby food items are stored on the shelf and in the freezer.
+For store-bought products, I will use their EAN (European Article Number) for identification. For homemade food, I will manually enter the relevant details. All data will be stored in a MySQL database.
 
 Milestone(s)
 ------------
-<TODO: Talk a bit about the process you want to take, and what you'd like to have done by the check-in milestone. I won't hold you to that milestone; we just want you to be thinking about the order you'll be working on things. If there are any current or anticipated blockers (e.g. needing to get data from an external source or getting feedback on something), please identify those here too.>
+By June 10, I aim to have a working template and some minimal functionality implemented, allowing the application to run while I continue developing additional features.
 
 External libraries and code
 ---------------------------
-<TODO: Identify any external libraries or code you plan to use, and describe how it fits into your project. It's fine to say "None" here, and you can change your mind later.>
+I plan to use the following technologies:
+Bootstrap for styling
+Vanilla JS for client-side logic
+Express for the backend
+Prisma with MySQL for database interaction
+An external API for retrieving product information by EAN
+Possibly additional libraries as needed
+The whole project will be dockerized
 
 Collaboration and resources
 ---------------------------
-<TODO: Identify any sources you plan to consult, except for code listed above. This might include getting feedback from users or getting data from an external source.>
-
-Anything else?
--------------
-<TODO: Anything else you'd like me to know?>
+I will primarily work independently, but will use:
+GitHub for libraries
+Stack Overflow for debugging
