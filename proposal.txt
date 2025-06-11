@@ -11,7 +11,7 @@ For store-bought products, I will use their EAN (European Article Number) for id
 
 Milestone(s)
 ------------
-By June 10, I aim to have a working template and some minimal functionality implemented, allowing the application to run while I continue developing additional features.
+Due to a lack of time, i do not have anything to present yet.
 
 External libraries and code
 ---------------------------
