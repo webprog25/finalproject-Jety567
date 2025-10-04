@@ -1,13 +1,403 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Final Project</title>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baby Shelf Organizer</title>
 
-    <!-- This line provides automatic page and style reloading when files change -->
-    <script type="module" src="/lib/client/updater.js"></script>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
-  </body>
+    <!-- PWA manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0d6efd">
+
+    <!-- iOS support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- iOS app icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon_180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/icon_167x167.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon_152x152.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/icon_120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icons/icon_76x76.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icons/icon_60x60.png">
+
+    <!-- Android/General PWA icons -->
+    <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon_512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon_192x192.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="/icons/icon_144x144.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/icons/icon_128x128.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icons/icon_96x96.png">
+    <link rel="icon" type="image/png" sizes="72x72" href="/icons/icon_72x72.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/icon_48x48.png">
+
+    <!-- Fallback favicon -->
+    <link rel="icon" href="/icons/icon_60x60.png" type="image/png">
+
+    <!-- Fallback icons to avoid 404s -->
+    <link rel="apple-touch-icon-precomposed" href="/icons/icon_180x180.png">
+    <link rel="apple-touch-icon" href="/icons/icon_180x180.png">
+    <link rel="shortcut icon" href="/icons/icon_60x60.png" type="image/png">
+
+    <!-- CSS -->
+    <link href="/css/loader.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+    <link href="/css/scanner.css" rel="stylesheet">
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom" id="mainNav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/" data-i18n="appName">Baby Shelf Organizer</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="add.html" data-i18n="add">Add</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="storageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="storage">
+                        Storage
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="storageDropdown">
+                        <li><a class="dropdown-item" id="shelf" href="location.html?id=shelf" data-i18n="shelf">Shelf</a></li>
+                        <li><a class="dropdown-item" id="freezer" href="location.html?id=freezer" data-i18n="freezer">Freezer</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="shopping.html" data-i18n="shoppingList">Shopping List</a></li>
+                <li class="nav-item"><a class="nav-link" href="vacation.html" data-i18n="vacationList">Vacation List</a></li>
+                <li class="nav-item"><a class="nav-link" href="article.html" data-i18n="article">Article</a></li>
+                <li class="nav-item"><a class="nav-link" href="stores.html" data-i18n="stores">Stores</a></li>
+                <li class="nav-item"><a class="nav-link" href="qr-code.html">QR Code</a></li>
+                <li class="nav-item"><a class="nav-link" href="settings.html" data-i18n="settings">Settings</a></li>
+            </ul>
+            <div class="d-flex align-items-center">
+                <div class="dropdown me-3">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown">
+                        Loading....
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="languageDropdown" id="languageDropdownMenu">
+                    </ul>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="darkModeToggle" />
+                    <label class="form-check-label" for="darkModeToggle" data-i18n="darkMode">Dark Mode</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Main content -->
+<main class="container py-5">
+    <h1 class="text-center mb-4 text-primary" data-i18n="title">Baby Shelf Organizer</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <h2 class="h5 border-bottom pb-2 mb-4" data-i18n="shelfOverview">Shelf Overview</h2>
+            <div class="row text-center g-4">
+                <div class="col-md-4">
+                    <div class="p-3 bg-body-secondary rounded">
+                        <h5 data-i18n="totalItems">Total Items</h5>
+                        <p class="fs-4 fw-bold text-primary" id="total_items" data-i18n="loading">Loading..</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-body-secondary rounded">
+                        <h5 data-i18n="holidayList">Vacation List</h5>
+                        <p class="fs-4 fw-bold text-primary" id="holiday_items" data-i18n="loading">Loading..</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-body-secondary rounded">
+                        <h5 data-i18n="shoppingList">Shopping List</h5>
+                        <p class="fs-4 fw-bold text-primary" id="shopping_items" data-i18n="loading">Loading..</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h3 class="h5 mb-3" data-i18n="searchEan">Search by EAN:</h3>
+                <div class="d-flex flex-wrap gap-2">
+                    <input type="text" class="form-control flex-grow-1" id="searchInput" placeholder="Enter EAN code..." data-i18n-placeholder="enterEan" />
+                    <button class="btn btn-outline-primary" id="ean-scan" data-i18n="scan">Scan</button>
+                    <button class="btn btn-primary" id="ean-search-btn" data-i18n="search">Search</button>
+                </div>
+                <div id="scanner-wrapper" hidden="">
+                    <div class="mt-4 d-flex align-items-center justify-content-start">
+                        <div id="scanner-container" class="mx-auto">
+                            <div id="overlay-frame">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mt-4">
+                <table id="resultsTable" class="table table-striped" style="display:none;">
+                    <thead>
+                    <tr>
+                        <th data-i18n="name">Name</th>
+                        <th data-i18n="ean">EAN</th>
+                        <th data-i18n="location">Location</th>
+                        <th data-i18n="quantity">Quantity</th>
+                        <th data-i18n="actions"></th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <nav>
+                    <ul id="pagination" class="pagination justify-content-center"></ul>
+                </nav>
+            </div>
+
+            <div class="mt-5">
+                <h3 class="h5 mb-3" data-i18n="expiringSoon">Expiring Soon</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead class="table-dark">
+                        <tr>
+                            <th data-i18n="product">Product</th>
+                            <th data-i18n="location">Location</th>
+                            <th data-i18n="expiresOn">Expires On</th>
+                            <th data-i18n="daysLeft">Days Left</th>
+                        </tr>
+                        </thead>
+                        <tbody id="expiringTableBody">
+                        <!-- Rows will be filled by JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="expiringAlert" class="alert alert-info mt-3 d-flex align-items-center d-none" role="alert" data-i18n="expiringAlert">
+                    <i class="bi bi-exclamation-circle-fill me-2"></i>
+                    There are more expiring items not displayed (showing max 15).
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script type="module" src="/js/app.js"></script>
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/js/service-worker.js")
+                .then(reg => console.log("Service Worker registered:", reg.scope))
+                .catch(err => console.error("Service Worker registration failed:", err));
+        });
+    }
+</script>
+<script type="module">
+    import {onLanguageChange,locationObject} from "./js/i18n.js";
+    import Loader from "./js/modules/loader.js";
+    import EANScanner from "./js/modules/Scanner/EANScanner.js";
+    import {openInfo} from "/js/modules/articleInfo.js";
+    import {showToast} from "./js/modules/socket.js";
+
+    const input = document.getElementById("searchInput");
+    const table = document.getElementById("resultsTable");
+    const tbody = table.querySelector("tbody");
+    const pagination = document.getElementById("pagination");
+
+    const loader = new Loader();
+    loader.startLoader(6000);
+
+    new EANScanner({
+        buttonId: "ean-scan",
+        containerId: "scanner-container",
+        wrapperId: "scanner-wrapper",
+        onDetect: async (code) => {
+            console.log("EAN detected:", code);
+            document.getElementById("searchInput").value = code;
+            await search(code);
+        }
+    });
+
+    async function loadExpiringItems() {
+        try {
+            const res = await fetch("/api/shelf/item/expiry/soon"); // adjust to your route
+            const data = await res.json();
+
+            const tbody = document.getElementById("expiringTableBody");
+            tbody.innerHTML = ""; // clear old rows
+
+            let object = locationObject();
+
+            data.expiringSoon.forEach(item => {
+                const tr = document.createElement("tr");
+
+                // Determine row style + badge
+                let rowClass = "";
+                let badgeClass = "bg-secondary";
+                let badgeText = "";
+
+                if (item.daysLeft === "expired") {
+                    badgeClass = "bg-danger";
+                    badgeText = "expired";
+                } else if (typeof item.daysLeft === "number" && item.daysLeft <= 5) {
+                    badgeClass = "bg-warning text-dark";
+                    badgeText = item.daysLeft;
+                } else {
+                    badgeClass = "bg-success";
+                    badgeText = item.daysLeft;
+                }
+
+                tr.innerHTML = `
+        <td>${item.name || "Unnamed"}</td>
+        <td>${object[item.location] || "-"}</td>
+        <td>${item.expires_at ? new Date(item.expires_at).toLocaleDateString() : "-"}</td>
+        <td><span class="badge ${badgeClass}">${badgeText ?? "-"}</span></td>
+      `;
+
+                tbody.appendChild(tr);
+            });
+
+            // Show alert if hasMoreExpiring === true
+            const alertBox = document.getElementById("expiringAlert");
+            if (data.hasMoreExpiring) {
+                alertBox.classList.remove("d-none");
+            } else {
+                alertBox.classList.add("d-none");
+            }
+        } catch (err) {
+            console.error("Failed to load expiring items", err);
+        }
+    }
+
+    onLanguageChange(async () => {
+        await loadExpiringItems();
+        let request = await fetch('/api/shelf/item/overview');
+        if (request.ok) {
+            let {totalShelfItems,shopping, holiday} = await request.json();
+            document.getElementById('total_items').innerHTML = totalShelfItems;
+            document.getElementById('shopping_items').innerHTML = shopping;
+            document.getElementById('holiday_items').innerHTML = holiday;
+        }
+        loader.stopLoader()
+    })
+
+    let results = [];
+    let page = 1;
+    const perPage = 5;
+
+    // Render rows
+    function renderTable() {
+        let locations = locationObject();
+
+        const start = (page - 1) * perPage;
+        const rows = results.slice(start, start + perPage);
+
+        tbody.innerHTML = rows.map(r => `
+  <tr data-id="${r.id}" data-article-id="${r.article_id}">
+    <td>${r.name ?? ""}</td>
+    <td>${r.ean ?? ""}</td>
+    <td>${locations[r.location] ?? ""}</td>
+    <td>${r.quantity ?? ""}</td>
+    <td>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" class="btn btn-primary info-btn">Info</button>
+                    <button type="button" class="btn btn-secondary used-btn">Used</button>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </td>
+  </tr>
+`).join("");
+
+// Attach event listeners after rendering
+        tbody.querySelectorAll(".info-btn").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const id = e.target.closest("tr").dataset.articleId;
+                openInfo(id); // works because it's imported
+            });
+        });
+
+        tbody.querySelectorAll(".used-btn").forEach(btn => {
+            btn.addEventListener("click", async (e) => {
+                const row = e.target.closest("tr")
+                const id = row.dataset.id;
+                const name = row.cells[0].innerText;
+                try {
+                    const res = await fetch(`/api/shelf/item/use/ean/${id}`, { method: "PUT" });
+                    if (!res.ok) throw new Error("Failed to mark as used");
+
+                    const data = await res.json();
+                    const updatedItem = data.items.find(it => it._id === id);
+
+                    if (!updatedItem || updatedItem.quantity <= 0) {
+                        row.remove();
+                    } else {
+                        row.querySelector("td:nth-child(4)").textContent = updatedItem.quantity;
+                    }
+
+                    showToast(`"${name}" marked as used`);
+                } catch (err) {
+                    console.error(err);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: err.message || "Something went wrong",
+                    });
+                }
+            });
+        });
+
+        table.style.display = results.length ? "table" : "none";
+        renderPagination();
+    }
+
+    // Render pagination
+    function renderPagination() {
+        const pages = Math.ceil(results.length / perPage);
+        pagination.innerHTML = "";
+
+        for (let i = 1; i <= pages; i++) {
+            pagination.innerHTML += `
+      <li class="page-item ${i === page ? "active" : ""}">
+        <a href="#" class="page-link" data-page="${i}">${i}</a>
+      </li>
+    `;
+        }
+
+        pagination.querySelectorAll("a").forEach(a => {
+            a.addEventListener("click", e => {
+                e.preventDefault();
+                page = parseInt(a.dataset.page);
+                renderTable();
+            });
+        });
+    }
+
+    // Fetch data
+    async function search(query) {
+        const res = await fetch(`/api/shelf/item/search?q=${encodeURIComponent(query)}`);
+        results = await res.json();
+        page = 1;
+        renderTable();
+    }
+
+    // Trigger search (live as user types)
+    input.addEventListener("input", e => {
+        const q = e.target.value.trim();
+        if (q) {
+            search(q);
+        } else {
+            results = [];
+            renderTable();
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

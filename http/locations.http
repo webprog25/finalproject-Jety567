@@ -1,0 +1,12 @@
+### POST - Create a new location
+POST http://localhost:1930/api/location
+Content-Type: application/json
+
+{
+  "name": "Wohnzimmer"
+}
+
+###
+
+### DELETE - Delete location by ID
+DELETE http://localhost:1930/api/location/689de51533cd9dcd85fe3d08

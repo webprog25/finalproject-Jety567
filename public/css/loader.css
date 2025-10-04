@@ -1,0 +1,61 @@
+
+body {
+    display: none; /* hide page until loader finishes */
+}
+/* Full page overlay */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+    color: #444;
+}
+
+/* Light mode */
+#loading-screen.light {
+    background: linear-gradient(135deg, #fceabb, #f8b500) !important;
+    color: #333 !important;
+}
+
+/* Dark mode */
+#loading-screen.dark {
+    background: linear-gradient(135deg, #232526, #414345) !important;
+    color: #eee !important;
+}
+
+/* Baby emoji bouncing */
+.baby {
+    font-size: 5rem;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+/* Loading text */
+.loading-text {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.3;
+    }
+}

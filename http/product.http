@@ -1,0 +1,23 @@
+### POST request to example server
+POST http://localhost:1930/db/ean
+Content-Type: application/json
+
+{
+  "ean": "4066447373257",
+  "name": "Bio Knusper Flips",
+  "location": "Shelf",
+  "shelf": "right",
+  "expires_at": "2025-02-23"
+}
+
+### POST request to example server
+POST http://localhost:1930/db/qr
+Content-Type: application/json
+
+{
+  "qr": "723742374537345734573457357",
+  "name": "Nudeln mit Soße",
+  "location": "Shelf",
+  "shelf": "right",
+  "expires_at": "2025-02-23"
+}

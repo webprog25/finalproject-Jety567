@@ -1,0 +1,20 @@
+### Create or update article
+POST http://localhost:1930/api/article
+Content-Type: application/json
+
+{
+  "ean": "4062300038639",
+  "name": "HiPP Bio Rapsöl"
+}
+
+### Update article prices
+PUT http://localhost:1930/api/article/prices/4062300038639
+Content-Type: application/json
+
+{}
+
+### Update store availability
+PUT http://localhost:1930/api/article/stores/4062300038639
+Content-Type: application/json
+
+{}

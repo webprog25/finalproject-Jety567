@@ -1,0 +1,10 @@
+### Create item and place on shelf
+POST http://localhost:1930/api/shelf/item/qr
+Content-Type: application/json
+
+{
+  "name": "Zucchini und Tomaten",
+  "quantity": 1,
+  "expiry": "2025-08-11",
+  "code": "d171677f-4d8a-4909-9f3a-9dfc49eec9c3"
+}

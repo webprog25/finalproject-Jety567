@@ -1,0 +1,31 @@
+### Add store to Mueller brand
+POST https://localhost:1931/api/mueller/store
+Content-Type: application/json
+
+{
+  "data": {
+    "storeId": "1214",
+    "storeNumber": "1214",
+    "address": {
+      "name": "Rossmann",
+      "street": "Bahnhofstr. 23-27",
+      "zip": "83022",
+      "city": "Rosenheim",
+      "regionName": "bayern"
+    },
+    "phone": null,
+    "coordinates": [
+      "47.851114070066",
+      "12.120982351938"
+    ]
+  },
+  "openingHours": {
+    "Monday": [{ "open": "08:00", "close": "20:00" }],
+    "Tuesday": [{ "open": "08:00", "close": "20:00" }],
+    "Wednesday": [{ "open": "08:00", "close": "20:00" }],
+    "Thursday": [{ "open": "08:00", "close": "20:00" }],
+    "Friday": [{ "open": "08:00", "close": "20:00" }],
+    "Saturday": [{ "open": "08:00", "close": "19:00" }],
+    "Sunday": []
+  }
+}
